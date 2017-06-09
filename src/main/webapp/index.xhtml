@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
 <body>
-	hello airport
+	<h2>
+		Flights information
+	</h2>
+	<h:dataTable var="dt" value="#{data.callFlights()}">    
+		  <h:column headerText="Account Number"> 
+			  <f:facet name="header">
+			  	<h:outputText value="Flight Number"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.flightnr}" />
+		  </h:column>
+		  <h:column>  
+			  <f:facet name="header">
+			  	<h:outputText value="origin Airport"/>
+			  </f:facet>
+			  <h:outputText value="#{dt.origin.name}" />  
+		  </h:column>
+		  <h:column>  
+			  <f:facet name="header">
+			  	<h:outputText value="Destination Airport"/>
+			  </f:facet>
+			  <h:outputText value="#{dt.destination.name}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Airplane model"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airplane.model}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Departure Date"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.departureDate} #{dt.departureTime}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Arrival Date"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.arrivalDate} #{dt.arrivalTime}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Airplane model"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airplane.model}" />  
+		  </h:column>
+		</h:dataTable>
+	
 </body>
 </html>

@@ -12,7 +12,15 @@
 	<h2>
 		Flights information
 	</h2>
-	<h:dataTable var="dt" value="#{data.callFlights()}">    
+
+	<h:inputHidden  value="#{data.getAllFlights()}"/>
+	<h:form id="contact">
+	<h:outputLabel value="Search:" />
+		<h:inputText id="search" value="#{data.searchAirline}">
+			<f:ajax event="keyup" listener="#{data.findAirlines}"
+				execute="@this" render="list" />
+		</h:inputText>
+	<h:dataTable var="dt" value="#{data.flights}">    
 		  <h:column headerText="Account Number"> 
 			  <f:facet name="header">
 			  	<h:outputText value="Flight Number"/>
@@ -21,21 +29,27 @@
 		  </h:column>
 		  <h:column>  
 			  <f:facet name="header">
-			  	<h:outputText value="origin Airport"/>
+			  	<h:outputText value="Origin"/>
 			  </f:facet>
 			  <h:outputText value="#{dt.origin.name}" />  
 		  </h:column>
 		  <h:column>  
 			  <f:facet name="header">
-			  	<h:outputText value="Destination Airport"/>
+			  	<h:outputText value="Destination"/>
 			  </f:facet>
 			  <h:outputText value="#{dt.destination.name}" />  
 		  </h:column>
 		  <h:column> 
 			  <f:facet name="header">
-			  	<h:outputText value="Airplane model"/>
+			  	<h:outputText value="Model"/>
 			  </f:facet> 
 			  <h:outputText value="#{dt.airplane.model}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Model"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airplane.capacity}" />  
 		  </h:column>
 		  <h:column> 
 			  <f:facet name="header">
@@ -49,13 +63,7 @@
 			  </f:facet> 
 			  <h:outputText value="#{dt.arrivalDate} #{dt.arrivalTime}" />  
 		  </h:column>
-		  <h:column> 
-			  <f:facet name="header">
-			  	<h:outputText value="Airplane model"/>
-			  </f:facet> 
-			  <h:outputText value="#{dt.airplane.model}" />  
-		  </h:column>
 		</h:dataTable>
-	
+		</h:form>
 </body>
 </html>

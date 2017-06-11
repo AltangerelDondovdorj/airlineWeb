@@ -11,8 +11,8 @@
 <h:body>
 	<h2>New Airline</h2>
 	<h:form>
-		Name: <h:inputText name="name"></h:inputText>
-		<h:commandButton value="submit" action="#{airline.submit}"></h:commandButton>
+		Name: <h:inputText name="name" value="#{airline.airlineName}"></h:inputText>
+		<h:commandButton value="submit" action="#{airline.submit()}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>

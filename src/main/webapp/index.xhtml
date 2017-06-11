@@ -20,9 +20,15 @@
 			<f:ajax event="keyup" listener="#{airlineData.findAirlines}"
 				execute="@this" render="list" />
 				<h:messages/>
-		</h:inputText>
-		<h:commandButton value="New Flight" action="faces/NewFlight.xhtml"></h:commandButton>
+		</h:inputText>&nbsp;
+		<f:ajax render="list">
+			<h:outputLabel value="Search Date from:" /><h:inputText value="#{airlineData.fromDate}"></h:inputText>
+			<h:commandButton value="Search" action="#{airlineData.findFlightbyDate()}"></h:commandButton>&nbsp;
+		</f:ajax>
+		<h:commandButton value="New Flight" action="faces/NewFlight.xhtml"></h:commandButton>&nbsp;
 		<h:commandButton value="Airlines" action="faces/Airlines.xhtml"></h:commandButton>
+		<br/>
+		<br/>
 	<h:dataTable id="list" var="dt" value="#{airlineData.flights}" border="1">  
 		<h:column headerText="Airline"> 
 			  <f:facet name="header">

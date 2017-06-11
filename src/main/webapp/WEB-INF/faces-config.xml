@@ -4,37 +4,36 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
               http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-	<flow-definition id="faces">
+	<navigation-rule>
+		<from-view-id>/faces/NewAirline.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/faces/Airlines.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/faces/Airlines.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/faces/Airlines.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>deleted</from-outcome>
+			<to-view-id>/faces/Airlines.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/faces/Airlines.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>updated</from-outcome>
+			<to-view-id>/faces/Airlines.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
-		<navigation-rule>
-			<from-view-id>*</from-view-id>
-			<navigation-case>
-				<from-outcome>newAirline</from-outcome>
-				<to-view-id>/faces/NewAirline.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
-		<navigation-rule>
-			<from-view-id>*</from-view-id>
-			<navigation-case>
-				<from-outcome>NewFlight</from-outcome>
-				<to-view-id>/faces/NewFlight.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
-		<navigation-rule>
-			<from-view-id>*</from-view-id>
-			<navigation-case>
-				<from-outcome>Airlines</from-outcome>
-				<to-view-id>/faces/Airlines.xhtml</to-view-id>
-			</navigation-case>
-		</navigation-rule>
-		
-		<navigation-rule>
-			<from-view-id>faces/NewAirline.xhtml</from-view-id>
-			<navigation-case>
-				<from-outcome>submit</from-outcome>
-				<to-view-id>{airline.submit()}</to-view-id>
-			</navigation-case>
-		</navigation-rule>
-
-	</flow-definition>
 </faces-config>

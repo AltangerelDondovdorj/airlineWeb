@@ -10,7 +10,14 @@
 </h:head>
 <h:body>
 	<h2>Airlines</h2>
-	<h:button value="Go back" href="NewAirline.xhtml" />
+	<h:form>
+	<h:commandButton value="Go to Home" action="home"/> 
+	<h:commandButton value="Add New Airline" action="/faces/NewAirline.xhtml"/><br/>
+	
+	Update from<h:inputText value="#{airline.oldName}"/>
+	To <h:inputText value="#{airline.newName}"/>
+	<h:commandButton value="update" action="#{airline.updateAirline}"/>
+	<br/>
 	<h:dataTable id="list" var="dt" value="#{airline.airlineList}" border="1">  
 		<h:column headerText="Airline"> 
 			  <f:facet name="header">
@@ -34,8 +41,11 @@
 			  <f:facet name="header">
 			  	<h:outputText value="Delete"/>
 			  </f:facet>
-			  <h:outputText value="delete" />  
+			  <h:commandButton value="delete" action="#{airline.deleteAirline}">
+			  	<f:param name="id" value="#{dt.id}" />
+			  </h:commandButton>  
 		  </h:column>
 		</h:dataTable>
+		</h:form>
 </h:body>
 </html>

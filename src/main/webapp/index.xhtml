@@ -1,26 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
-<head>
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
-</head>
-<body>
+</h:head>
+<h:body>
 	<h2>
 		Flights information
 	</h2>
-
-	<h:inputHidden  value="#{data.getAllFlights()}"/>
+	
 	<h:form id="contact">
 	<h:outputLabel value="Search:" />
-		<h:inputText id="search" value="#{data.searchAirline}">
-			<f:ajax event="keyup" listener="#{data.findAirlines}"
+		<h:inputText id="search" value="#{airlineData.searchAirline}">
+			<f:ajax event="keyup" listener="#{airlineData.findAirlines}"
 				execute="@this" render="list" />
+				<h:messages/>
 		</h:inputText>
-	<h:dataTable var="dt" value="#{data.flights}">    
+		<h:commandButton value="New Flight" action="faces/NewFlight.xhtml"></h:commandButton>
+		<h:commandButton value="Airlines" action="faces/Airlines.xhtml"></h:commandButton>
+	<h:dataTable id="list" var="dt" value="#{airlineData.flights}" border="1">  
+		<h:column headerText="Airline"> 
+			  <f:facet name="header">
+			  	<h:outputText value="Airline"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airline.name}" />
+		  </h:column>  
 		  <h:column headerText="Account Number"> 
 			  <f:facet name="header">
 			  	<h:outputText value="Flight Number"/>
@@ -41,18 +50,6 @@
 		  </h:column>
 		  <h:column> 
 			  <f:facet name="header">
-			  	<h:outputText value="Model"/>
-			  </f:facet> 
-			  <h:outputText value="#{dt.airplane.model}" />  
-		  </h:column>
-		  <h:column> 
-			  <f:facet name="header">
-			  	<h:outputText value="Model"/>
-			  </f:facet> 
-			  <h:outputText value="#{dt.airplane.capacity}" />  
-		  </h:column>
-		  <h:column> 
-			  <f:facet name="header">
 			  	<h:outputText value="Departure Date"/>
 			  </f:facet> 
 			  <h:outputText value="#{dt.departureDate} #{dt.departureTime}" />  
@@ -63,7 +60,25 @@
 			  </f:facet> 
 			  <h:outputText value="#{dt.arrivalDate} #{dt.arrivalTime}" />  
 		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Arrival Date"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.arrivalDate} #{dt.arrivalTime}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Model"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airplane.model}" />  
+		  </h:column>
+		  <h:column> 
+			  <f:facet name="header">
+			  	<h:outputText value="Capacity"/>
+			  </f:facet> 
+			  <h:outputText value="#{dt.airplane.capacity}" />  
+		  </h:column>
 		</h:dataTable>
 		</h:form>
-</body>
+</h:body>
 </html>
